@@ -5,7 +5,7 @@ namespace KSP_OrbitManeuvers.Helpers
 {
     public class CelestialBodiesDictionary
     {
-        readonly Dictionary<int, string> celestialBodyCodes = new Dictionary<int, string>()
+        readonly public Dictionary<int, string> celestialBodyCodes = new Dictionary<int, string>()
         {
             {(int)CelestialBodiesEnum.KERBOL , "Kerbol" },
 
@@ -72,5 +72,9 @@ namespace KSP_OrbitManeuvers.Helpers
             {(int)CelestialBodiesEnum.TRITON , "Triton" },
             {(int)CelestialBodiesEnum.NEREID , "Nereid" }
         };
+
+        public CelestialBodiesDictionary()
+        {
+        }
     }
 }

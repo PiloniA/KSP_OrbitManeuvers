@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KSP_OrbitManeuvers.Objects;
+using KSP_OrbitManeuvers.Helpers;
 using KSP_OrbitManeuvers.BodyConstants;
 using System.Reflection;
 
@@ -12,6 +13,9 @@ namespace KSP_OrbitManeuvers
 {
     public class SetupUniverse
     {
+        DummySystem starSystem = new DummySystem();
+        readonly CelestialBodiesDictionary celestialDict = new CelestialBodiesDictionary();
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -64,23 +68,22 @@ namespace KSP_OrbitManeuvers
 
         private void CreateStar(int starNumber)
         {
-            string starName;
-            var starSystem = new DummySystem();
+            
 
-            if (starNumber == 100)
+            string starName = celestialDict.celestialBodyCodes[starNumber];
+
+            if (starName == "Kerbol")
             {
-                starName = "Kerbol";
                 starSystem = new KerbolSystem();
             }
-            else if (starNumber == 200)
+            else if (starName == "Sol")
             {
-                starName = "Sol";
                 starSystem = new SolarSystem();
             }
             else
             {
                 TextWriter errorWriter = Console.Error;
-                errorWriter.WriteLine("Star System not defined. Aborting...");
+                errorWriter.WriteLine("Star System not defined. Abort...");
                 return;
             }
 
@@ -115,12 +118,40 @@ namespace KSP_OrbitManeuvers
 
         private void CreatePlanet(int planetNumber)
         {
-            CreateMoon();
+            string planetName = celestialDict.celestialBodyCodes[planetNumber];
+
+            Planet planet = new Planet
+            {
+                Name = starSystem.GetType().GetField($"{planetName}_Name").GetValue(starSystem).ToString(),
+
+                NumberOfDirectChildren = Convert.ToInt32(starSystem.GetType().GetField($"{planetName}_NumberOfDirectChildren").GetValue(starSystem)),
+                EquatorialRadius = (float)starSystem.GetType().GetField($"{planetName}_AtmospherePresent").GetValue(starSystem),
+                Density = (float)starSystem.GetType().GetField($"{planetName}_Density").GetValue(starSystem),
+                Mass = (float)starSystem.GetType().GetField($"{planetName}_Mass").GetValue(starSystem),
+                EscapeVelocity = (float)starSystem.GetType().GetField($"{planetName}_EscapeVelocity").GetValue(starSystem),
+                SiderealRotationPeriod = (float)starSystem.GetType().GetField($"{planetName}_SiderealRotationPeriod").GetValue(starSystem),
+                SphereOfInfluence = (float)starSystem.GetType().GetField($"{planetName}_SphereOfInfluence").GetValue(starSystem),
+
+                AtmospherePresent = Convert.ToBoolean(starSystem.GetType().GetField($"{planetName}_AtmospherePresent").GetValue(starSystem)),
+                AtmosphericPressure = (float)starSystem.GetType().GetField($"{planetName}_AtmosphericPressure").GetValue(starSystem),
+                AtmosphericHeight = (float)starSystem.GetType().GetField($"{planetName}_AtmosphericHeight").GetValue(starSystem),
+                TemperatureMin = (float)starSystem.GetType().GetField($"{planetName}_TemperatureMin").GetValue(starSystem),
+                TemperatureMax = (float)starSystem.GetType().GetField($"{planetName}_TemperatureMax").GetValue(starSystem),
+                OxigenPresent = Convert.ToBoolean(starSystem.GetType().GetField($"{planetName}_OxigenPresent").GetValue(starSystem))
+            };
+
+            //CreateMoon();
         }
 
         private void CreateMoon()
         {
 
+        }
+
+        private void PrintStarSystem()
+        {
+            TextWriter errorWriter = Console.Error;
+            errorWriter.WriteLine("Star System not defined. Abort...");
         }
     }
 }
