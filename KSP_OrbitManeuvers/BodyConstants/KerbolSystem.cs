@@ -9,7 +9,7 @@
         public const float Kerbol_Density = 234.23818F;
         public const float Kerbol_EscapeVelocity = 94672.01F;
         public const float Kerbol_SiderealRotationPeriod = 432000F;
-        public const float Kerbol_SphereOfInfluenct = float.PositiveInfinity;
+        public const float Kerbol_SphereOfInfluence = float.PositiveInfinity;
 
         public const bool Kerbol_AtmospherePresent = true;
         public const float Kerbol_AtmosphericPressure = 16F;
