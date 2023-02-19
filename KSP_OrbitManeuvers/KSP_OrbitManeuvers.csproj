@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BodyConstants\DummySystem.cs" />
+    <Compile Include="BodyConstants\SolarSystem.cs" />
+    <Compile Include="BodyConstants\KerbolSystem.cs" />
+    <Compile Include="CalculateTransferWindows.cs" />
+    <Compile Include="CalculateTransfers.cs" />
+    <Compile Include="CalculateOrbitParameters.cs" />
     <Compile Include="Enums\CelestialBodiesEnum.cs" />
     <Compile Include="Objects\StarSystem.cs" />
     <Compile Include="Objects\Universe.cs" />
@@ -59,7 +65,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="SetupUniverse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

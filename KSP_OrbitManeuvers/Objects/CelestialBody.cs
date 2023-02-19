@@ -8,6 +8,8 @@ namespace KSP_OrbitManeuvers.Objects
 {
     class CelestialBody
     {
+        public int NumberOfDirectChildren { get; set; }
+
         //Physical Characteristics
         public float EquatorialRadius { get; set; }
         public float Density { get; set; }

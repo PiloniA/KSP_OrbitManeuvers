@@ -5,6 +5,7 @@ public enum CelestialBodiesEnum
     // 2nd digit: Planet
     // 3rd digit: Moon
 
+    #region Kerbol
     KERBOL = 100,
 
     MOHO = 110,
@@ -28,5 +29,46 @@ public enum CelestialBodiesEnum
     BOP = 164,
     POL = 165,
 
-    EELOO = 170
+    EELOO = 170,
+    #endregion
+
+    #region Sol
+    SOL = 200,
+
+    MERCURY = 210,
+    
+    VENUS = 220,
+
+    EARTH = 230,
+    LUNA = 231,
+
+    MARS = 240,
+    PHOBOS = 241,
+    DEIMOS = 242,
+
+    JUPITER = 250,
+    IO = 251,
+    EUROPA = 252,
+    GANYMED = 253,
+    KALLISTO = 254,
+
+    SATURN = 260,
+    TETHYS = 261,
+    DIONE = 262,
+    RHEA = 263,
+    TITAN = 264,
+    IAPETUS = 265,
+
+    URANUS = 270,
+    MIRANDA = 271,
+    ARIEL = 272,
+    UMBRIEL = 273,
+    TITANIA = 274,
+    OBERON = 275,
+
+    NEPTUN = 280,
+    TRITON = 281,
+    NEREID = 282,
+
+    #endregion
 }
