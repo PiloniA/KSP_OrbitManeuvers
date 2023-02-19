@@ -8,6 +8,7 @@ namespace KSP_OrbitManeuvers.Objects
 {
     class CelestialBody
     {
+        public string Name { get; set; }
         public int NumberOfDirectChildren { get; set; }
 
         //Physical Characteristics

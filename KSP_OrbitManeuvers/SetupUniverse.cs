@@ -28,9 +28,9 @@ namespace KSP_OrbitManeuvers
 
             pr.CreateUniverse(starSystemNames);
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new Form1());
         }
 
         private void CreateUniverse(List<string> starSystemNames)
@@ -86,14 +86,34 @@ namespace KSP_OrbitManeuvers
 
             Star star = new Star
             {
-                AtmospherePresent = Convert.ToBoolean(starSystem.GetType().GetField($"{starName}_AtmospherePresent").GetValue(starSystem))
+                Name = starSystem.GetType().GetField($"{starName}_Name").GetValue(starSystem).ToString(),
+
+                NumberOfDirectChildren = Convert.ToInt32(starSystem.GetType().GetField($"{starName}_NumberOfDirectChildren").GetValue(starSystem)),
+                EquatorialRadius = (float)starSystem.GetType().GetField($"{starName}_AtmospherePresent").GetValue(starSystem),
+                Density = (float)starSystem.GetType().GetField($"{starName}_Density").GetValue(starSystem),
+                Mass = (float)starSystem.GetType().GetField($"{starName}_Mass").GetValue(starSystem),
+                EscapeVelocity = (float)starSystem.GetType().GetField($"{starName}_EscapeVelocity").GetValue(starSystem),
+                SiderealRotationPeriod = (float)starSystem.GetType().GetField($"{starName}_SiderealRotationPeriod").GetValue(starSystem),
+                SphereOfInfluence = (float)starSystem.GetType().GetField($"{starName}_SphereOfInfluence").GetValue(starSystem),
+
+                AtmospherePresent = Convert.ToBoolean(starSystem.GetType().GetField($"{starName}_AtmospherePresent").GetValue(starSystem)),
+                AtmosphericPressure = (float)starSystem.GetType().GetField($"{starName}_AtmosphericPressure").GetValue(starSystem),
+                AtmosphericHeight = (float)starSystem.GetType().GetField($"{starName}_AtmosphericHeight").GetValue(starSystem),
+                TemperatureMin = (float)starSystem.GetType().GetField($"{starName}_TemperatureMin").GetValue(starSystem),
+                TemperatureMax = (float)starSystem.GetType().GetField($"{starName}_TemperatureMax").GetValue(starSystem),
+                OxigenPresent = Convert.ToBoolean(starSystem.GetType().GetField($"{starName}_OxigenPresent").GetValue(starSystem))
             };
-            CreatePlanet();
+
+            for (int i = 1; i <= star.NumberOfDirectChildren; i++)
+            {
+                int planetNumber = starNumber + 10 * i;
+                CreatePlanet(planetNumber);
+            }
 
 
         }
 
-        private void CreatePlanet()
+        private void CreatePlanet(int planetNumber)
         {
             CreateMoon();
         }
