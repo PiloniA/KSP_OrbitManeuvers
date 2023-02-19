@@ -13,7 +13,7 @@ namespace KSP_OrbitManeuvers.Objects
 
         public StarSystem()
         {
-
+            Stars = new List<Star>();
         }
     }
     

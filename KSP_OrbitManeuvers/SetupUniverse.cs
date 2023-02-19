@@ -26,8 +26,8 @@ namespace KSP_OrbitManeuvers
 
             List<string> starSystemNames = new List<string>
             {
-                "Kerbol System",
-                "Solar System"
+                "Kerbol System"//,
+                //"Solar System"
             };
 
             Universe universe = pr.CreateUniverse(starSystemNames);
@@ -69,6 +69,7 @@ namespace KSP_OrbitManeuvers
             }
 
             StarSystem starSystem = new StarSystem();
+            starSystem.SystemName = starSystemName;
                 
             Star star = CreateStar(starNumber);
             starSystem.Stars.Add(star);
@@ -95,7 +96,7 @@ namespace KSP_OrbitManeuvers
                 System.Windows.Forms.Application.Exit();
             }
 
-            Star star = new Star
+            Star star = new Star()
             {
                 Name = starName,
 
@@ -135,9 +136,9 @@ namespace KSP_OrbitManeuvers
                 Name = planetName,
 
                 NumberOfDirectChildren = Convert.ToInt32(starSystem.GetType().GetField($"{planetName}_NumberOfDirectChildren").GetValue(starSystem)),
-                EquatorialRadius = (float)starSystem.GetType().GetField($"{planetName}_AtmospherePresent").GetValue(starSystem),
-                Density = (float)starSystem.GetType().GetField($"{planetName}_Density").GetValue(starSystem),
+                EquatorialRadius = (float)starSystem.GetType().GetField($"{planetName}_EquatorialRadius").GetValue(starSystem),
                 Mass = (float)starSystem.GetType().GetField($"{planetName}_Mass").GetValue(starSystem),
+                Density = (float)starSystem.GetType().GetField($"{planetName}_Density").GetValue(starSystem),
                 EscapeVelocity = (float)starSystem.GetType().GetField($"{planetName}_EscapeVelocity").GetValue(starSystem),
                 SiderealRotationPeriod = (float)starSystem.GetType().GetField($"{planetName}_SiderealRotationPeriod").GetValue(starSystem),
                 SphereOfInfluence = (float)starSystem.GetType().GetField($"{planetName}_SphereOfInfluence").GetValue(starSystem),
@@ -147,7 +148,7 @@ namespace KSP_OrbitManeuvers
                 AtmosphericHeight = (float)starSystem.GetType().GetField($"{planetName}_AtmosphericHeight").GetValue(starSystem),
                 TemperatureMin = (float)starSystem.GetType().GetField($"{planetName}_TemperatureMin").GetValue(starSystem),
                 TemperatureMax = (float)starSystem.GetType().GetField($"{planetName}_TemperatureMax").GetValue(starSystem),
-                OxigenPresent = Convert.ToBoolean(starSystem.GetType().GetField($"{planetName}_OxigenPresent").GetValue(starSystem))
+                OxigenPresent = Convert.ToBoolean(starSystem.GetType().GetField($"{planetName}_OxygenPresent").GetValue(starSystem))
             };
             return planet;
 
