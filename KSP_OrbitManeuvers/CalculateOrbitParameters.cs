@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KSP_OrbitManeuvers.Objects
+namespace KSP_OrbitManeuvers
 {
-    class Moon : Planet
+    class CalculateOrbitParameters
     {
     }
 }

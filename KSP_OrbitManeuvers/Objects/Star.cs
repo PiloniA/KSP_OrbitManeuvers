@@ -8,5 +8,10 @@ namespace KSP_OrbitManeuvers.Objects
 {
     class Star : CelestialBody
     {
+        public List<Planet> Planets { get; set; }
+        public Star()
+        {
+            Planets = new List<Planet>();
+        }
     }
 }

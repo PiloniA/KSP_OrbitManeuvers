@@ -8,5 +8,11 @@ namespace KSP_OrbitManeuvers.Objects
 {
     class Universe
     {
+        public List<StarSystem> Starsystems { get; set; }
+
+        public Universe()
+        {
+            Starsystems = new List<StarSystem>();
+        }
     }
 }
