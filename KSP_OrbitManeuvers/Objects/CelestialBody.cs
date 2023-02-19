@@ -8,6 +8,12 @@ namespace KSP_OrbitManeuvers.Objects
 {
     class CelestialBody
     {
+        private int parent;
+
+        public CelestialBody()
+        {
+
+        }
 
     }
 }

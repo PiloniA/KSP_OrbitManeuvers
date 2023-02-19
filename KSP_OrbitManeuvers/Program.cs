@@ -41,9 +41,7 @@ namespace KSP_OrbitManeuvers
 
         private void CreateStarSystem(string starSystemName)
         {
-
             CreateStar();
-
         }
 
         private void CreateStar()
