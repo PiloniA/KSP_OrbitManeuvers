@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KSP_OrbitManeuvers.Objects
 {
-    class Moon : CelestialBody
+    class Moon : Planet
     {
     }
 }

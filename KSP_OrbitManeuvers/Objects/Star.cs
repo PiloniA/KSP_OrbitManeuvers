@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace KSP_OrbitManeuvers.Objects
 {
+
     class Star : CelestialBody
     {
     }
