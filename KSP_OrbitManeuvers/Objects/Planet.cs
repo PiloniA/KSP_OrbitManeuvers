@@ -24,5 +24,10 @@ namespace KSP_OrbitManeuvers.Objects
 
         // Physical Characteristics
         public float SolarDay { get; set; }
+
+        public Planet()
+        {
+            Moons = new List<Moon>();
+        }
     }
 }

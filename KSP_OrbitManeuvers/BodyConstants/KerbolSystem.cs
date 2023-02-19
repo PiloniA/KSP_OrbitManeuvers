@@ -19,7 +19,7 @@
         public const bool Kerbol_OxygenPresent = false;
 
 
-        public const int Moho_NumberOfDirectChildren = 5;
+        public const int Moho_NumberOfDirectChildren = 0;
 
         public const float Moho_EquatorialRadius = 261600000F;
         public const float Moho_Mass = 1.7565459e28F;
@@ -36,7 +36,7 @@
         public const bool Moho_OxygenPresent = false;
 
 
-        public const int Eve_NumberOfDirectChildren = 5;
+        public const int Eve_NumberOfDirectChildren = 1;
 
         public const float Eve_EquatorialRadius = 261600000F;
         public const float Eve_Mass = 1.7565459e28F;
@@ -53,7 +53,7 @@
         public const bool Eve_OxygenPresent = false;
 
 
-        public const int Gilly_NumberOfDirectChildren = 5;
+        public const int Gilly_NumberOfDirectChildren = 0;
 
         public const float Gilly_EquatorialRadius = 261600000F;
         public const float Gilly_Mass = 1.7565459e28F;
@@ -70,7 +70,7 @@
         public const bool Gilly_OxygenPresent = false;
 
 
-        public const int Kerbin_NumberOfDirectChildren = 5;
+        public const int Kerbin_NumberOfDirectChildren = 2;
 
         public const float Kerbin_EquatorialRadius = 261600000F;
         public const float Kerbin_Mass = 1.7565459e28F;
@@ -87,7 +87,7 @@
         public const bool Kerbin_OxygenPresent = false;
 
 
-        public const int Mun_NumberOfDirectChildren = 5;
+        public const int Mun_NumberOfDirectChildren = 0;
 
         public const float Mun_EquatorialRadius = 261600000F;
         public const float Mun_Mass = 1.7565459e28F;
@@ -104,7 +104,7 @@
         public const bool Mun_OxygenPresent = false;
 
 
-        public const int Minmus_NumberOfDirectChildren = 5;
+        public const int Minmus_NumberOfDirectChildren = 0;
 
         public const float Minmus_EquatorialRadius = 261600000F;
         public const float Minmus_Mass = 1.7565459e28F;
@@ -121,7 +121,7 @@
         public const bool Minmus_OxygenPresent = false;
 
 
-        public const int Duna_NumberOfDirectChildren = 5;
+        public const int Duna_NumberOfDirectChildren = 1;
 
         public const float Duna_EquatorialRadius = 261600000F;
         public const float Duna_Mass = 1.7565459e28F;
@@ -138,7 +138,7 @@
         public const bool Duna_OxygenPresent = false;
 
 
-        public const int Ike_NumberOfDirectChildren = 5;
+        public const int Ike_NumberOfDirectChildren = 0;
 
         public const float Ike_EquatorialRadius = 261600000F;
         public const float Ike_Mass = 1.7565459e28F;
@@ -155,7 +155,7 @@
         public const bool Ike_OxygenPresent = false;
 
 
-        public const int Dres_NumberOfDirectChildren = 5;
+        public const int Dres_NumberOfDirectChildren = 0;
 
         public const float Dres_EquatorialRadius = 261600000F;
         public const float Dres_Mass = 1.7565459e28F;
@@ -189,7 +189,7 @@
         public const bool Jool_OxygenPresent = false;
 
 
-        public const int Laythe_NumberOfDirectChildren = 5;
+        public const int Laythe_NumberOfDirectChildren = 0;
 
         public const float Laythe_EquatorialRadius = 261600000F;
         public const float Laythe_Mass = 1.7565459e28F;
@@ -206,7 +206,7 @@
         public const bool Laythe_OxygenPresent = false;
 
 
-        public const int Vall_NumberOfDirectChildren = 5;
+        public const int Vall_NumberOfDirectChildren = 0;
 
         public const float Vall_EquatorialRadius = 261600000F;
         public const float Vall_Mass = 1.7565459e28F;
@@ -223,7 +223,7 @@
         public const bool Vall_OxygenPresent = false;
 
 
-        public const int Tylo_NumberOfDirectChildren = 5;
+        public const int Tylo_NumberOfDirectChildren = 0;
 
         public const float Tylo_EquatorialRadius = 261600000F;
         public const float Tylo_Mass = 1.7565459e28F;
@@ -240,7 +240,7 @@
         public const bool Tylo_OxygenPresent = false;
 
 
-        public const int Bop_NumberOfDirectChildren = 5;
+        public const int Bop_NumberOfDirectChildren = 0;
 
         public const float Bop_EquatorialRadius = 261600000F;
         public const float Bop_Mass = 1.7565459e28F;
@@ -257,7 +257,7 @@
         public const bool Bop_OxygenPresent = false;
 
 
-        public const int Pol_NumberOfDirectChildren = 5;
+        public const int Pol_NumberOfDirectChildren = 0;
 
         public const float Pol_EquatorialRadius = 261600000F;
         public const float Pol_Mass = 1.7565459e28F;
@@ -274,7 +274,7 @@
         public const bool Pol_OxygenPresent = false;
 
 
-        public const int Eeloo_NumberOfDirectChildren = 5;
+        public const int Eeloo_NumberOfDirectChildren = 0;
 
         public const float Eeloo_EquatorialRadius = 261600000F;
         public const float Eeloo_Mass = 1.7565459e28F;

@@ -150,14 +150,42 @@ namespace KSP_OrbitManeuvers
                 TemperatureMax = (float)starSystem.GetType().GetField($"{planetName}_TemperatureMax").GetValue(starSystem),
                 OxigenPresent = Convert.ToBoolean(starSystem.GetType().GetField($"{planetName}_OxygenPresent").GetValue(starSystem))
             };
-            return planet;
 
-            //CreateMoon();
+            for (int i = 1; i <= planet.NumberOfDirectChildren; i++)
+            {
+                int moonNumber = planetNumber + i;
+                Moon moon = CreateMoon(moonNumber);
+                planet.Moons.Add(moon);
+            }
+
+            return planet;
         }
 
-        private void CreateMoon()
+        private Moon CreateMoon(int moonNumber)
         {
+            string moonName = celestialDict.celestialBodyCodes[moonNumber];
 
+            Moon moon = new Moon
+            {
+                Name = moonName,
+
+                NumberOfDirectChildren = Convert.ToInt32(starSystem.GetType().GetField($"{moonName}_NumberOfDirectChildren").GetValue(starSystem)),
+                EquatorialRadius = (float)starSystem.GetType().GetField($"{moonName}_EquatorialRadius").GetValue(starSystem),
+                Mass = (float)starSystem.GetType().GetField($"{moonName}_Mass").GetValue(starSystem),
+                Density = (float)starSystem.GetType().GetField($"{moonName}_Density").GetValue(starSystem),
+                EscapeVelocity = (float)starSystem.GetType().GetField($"{moonName}_EscapeVelocity").GetValue(starSystem),
+                SiderealRotationPeriod = (float)starSystem.GetType().GetField($"{moonName}_SiderealRotationPeriod").GetValue(starSystem),
+                SphereOfInfluence = (float)starSystem.GetType().GetField($"{moonName}_SphereOfInfluence").GetValue(starSystem),
+
+                AtmospherePresent = Convert.ToBoolean(starSystem.GetType().GetField($"{moonName}_AtmospherePresent").GetValue(starSystem)),
+                AtmosphericPressure = (float)starSystem.GetType().GetField($"{moonName}_AtmosphericPressure").GetValue(starSystem),
+                AtmosphericHeight = (float)starSystem.GetType().GetField($"{moonName}_AtmosphericHeight").GetValue(starSystem),
+                TemperatureMin = (float)starSystem.GetType().GetField($"{moonName}_TemperatureMin").GetValue(starSystem),
+                TemperatureMax = (float)starSystem.GetType().GetField($"{moonName}_TemperatureMax").GetValue(starSystem),
+                OxigenPresent = Convert.ToBoolean(starSystem.GetType().GetField($"{moonName}_OxygenPresent").GetValue(starSystem))
+            };
+
+            return moon;
         }
 
         private void PrintUniverse(Universe universe)
@@ -173,6 +201,10 @@ namespace KSP_OrbitManeuvers
                     foreach (Planet planet in star.Planets)
                     {
                         outWriter.WriteLine($"    Planet Name: {planet.Name}");
+                        foreach (Moon moon in planet.Moons)
+                        {
+                            outWriter.WriteLine($"      Moon Name: {moon.Name}");
+                        }
                     }
                 }
             }
