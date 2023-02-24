@@ -10,7 +10,7 @@ namespace KSP_OrbitManeuvers.BodyConstants
         {
             bodies = new List<string>()
             {
-                "Kerbol",
+                //"Kerbol",
                 "Moho",
                 "Eve",
                 "Gilly",

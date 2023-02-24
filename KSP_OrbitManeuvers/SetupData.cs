@@ -8,67 +8,133 @@ using System.IO;
 using System.Collections.Generic;
 using System.Globalization;
 using KSP_OrbitManeuvers.BodyConstants;
+using CsvHelper;
+using CsvHelper.Configuration;
+using System.Reflection;
+using System.Linq;
+using System;
 
 namespace KSP_OrbitManeuvers.Data
 {
-    class SetupData
-    {
-        public void WriteBodyParameters_FromWiki_toCsv()
-        {
-            string baseUrl = "https://kerbalspaceprogram.fandom.com/wiki/";
-            var system = new KerbolSystem();
+	class SetupData
+	{
+		public void WriteBodyParameters_FromWiki_toCsv()
+		{
+			string baseUrl = "https://wiki.kerbalspaceprogram.com/wiki/";
+			var system = new KerbolSystem();
 
-            //create csv with header
+			//create csv with header
+			var records = new List<string[]>();
 
-            foreach (string bodyName in system.bodies)
+			foreach (string bodyName in system.bodies)
+			{
+				//string fullUrl = baseUrl + bodyName;
+				var parameters = ParseHtml(CallUrl(baseUrl + bodyName).Result);
+				//records.Add(parameters);
+				WriteToCsv(parameters);
+				//add to csv
+			}
+		}
+		//public string Index(string fullUrl)
+		//{
+		//    var response = CallUrl(fullUrl).Result;
+		//    return response;
+		//}
+
+		private static async Task<string> CallUrl(string fullUrl)
+		{
+			HttpClient client = new HttpClient();
+			var response = await client.GetStringAsync(fullUrl);
+			return response;
+		}
+		private List<string> ParseHtml(string html)
+		{
+			HtmlDocument htmlDoc = new HtmlDocument();
+			htmlDoc.LoadHtml(html);
+
+			var test1 = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr/td/a[contains(text(), 'Semi-major axis')]");
+			//*[@id='mw-content-text']/div[1]/table/tbody
+			//*[@id="mw-content-text"]/div[1]/table/tbody
+			string valueString = htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Semi-major axis')]]]/td[2]/span/span/text()").InnerText.Replace("&#8201;", "");
+			//*[@id="mw-content-text"]/div[1]/table/tbody/tr[6]/td[2]/span/span
+			var test = new List<string>();
+			//test.Add(ConvertTable(test1));
+			test.Add(valueString);
+			test.Add("value2");
+
+
+			return test;
+		}
+		private void WriteToCsv(List<string> parameters)
+		{
+			string csv = String.Join(",", parameters.Select(x => x.ToString()).ToArray());
+
+            using (var writer = new StreamWriter("parameters.csv"))
+            using (var cw = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
-                var parameters = ParseHtml(CallUrl(baseUrl + bodyName).Result);
-                WriteToCsv(parameters);
-                //add to csv
-            }
-        }
-        //public string Index(string fullUrl)
-        //{
-        //    var response = CallUrl(fullUrl).Result;
-        //    return response;
-        //}
-
-        private static async Task<string> CallUrl(string fullUrl)
-        {
-            HttpClient client = new HttpClient();
-            var response = await client.GetStringAsync(fullUrl);
-            return response;
-        }
-        private List<string> ParseHtml(string html)
-        {
-            HtmlDocument htmlDoc = new HtmlDocument();
-            htmlDoc.LoadHtml(html);
-
-            var test1 = htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div/table");
-            //string valueString = htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div/table/tbody/tr[td[a[contains(text(), 'Semi-Major Axis')]]]/td[2]/span/text()").InnerText.Replace(" ", "");
-            //double value = double.Parse(valueString, CultureInfo.InvariantCulture.NumberFormat);
-            //*[@id="mw-content-text"]/div/aside/section[1]/h2
-            //*[@id='mw-content-text']/div/aside/section[1]/h2
-            //*[@id="mw-content-text"]/div/aside
-            var test = new List<string>();
-			test.Add(ConvertTable(test1));
-            //test.Add(valueString);
-            test.Add("value2");
-
-
-            return test;
-        }
-        private void WriteToCsv(List<string> parameters)
-        {
-            StringBuilder sb = new StringBuilder();
-            foreach (var link in parameters)
-            {
-                sb.Append(link);
+                cw.WriteRecords(csv);
             }
 
-            System.IO.File.AppendAllText("parameters.csv", sb.ToString());
+            //using (var stream = new MemoryStream())
+            //	using (var writer = new StreamWriter("parameters.csv"))
+            //	//using (var reader = new StreamReader(stream))
+            //	using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            //	{
+            ////		var records = new List<List<string>>
+            ////{
+            ////	new List<string> { "a1", "a2", "a3" },
+            ////	new List<string> { "b1", "b2", "b3" }
+            ////};
+
+            //		foreach (var record in parameters)
+            //		{
+            //                  //foreach (var field in record)
+            //                  //{
+            //                  csv.WriteField(record);
+            //                  //}
+
+            //                  csv.NextRecord();
+            //		}
+
+            //		writer.Flush();
+            //stream.Position = 0;
+
+            //Console.WriteLine(reader.ReadToEnd());
+
+
+
+
+
+
+            //StringBuilder sb = new StringBuilder();
+            //         foreach (var link in parameters)
+            //         {
+            //             sb.AppendLine(link);
+            //         }
+
+            //using (var writer = new StreamWriter("parameters.csv"))
+            //using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            //{
+            //	csv.Configuration.RegisterClassMap<CSVMap>();
+            //	csv.WriteRecords(parameters);
+            //}
+            //System.IO.File.AppendAllText("parameters.csv", sb.ToString());
         }
 
+		//public class CSVMap : ClassMap<CSV>
+		//{
+		//	public CSVMap()
+		//	{
+		//		AutoMap(CultureInfo.InvariantCulture);
+		//		Map(m => m.Header1).ConvertUsing(row => string.Join(",", row.Header1)).Index(0);
+		//	}
+		//}
+
+		//public class CSV
+		//{
+		//	public int? Id { get; set; }
+		//	public List<string> Header1 { get; set; }
+		//}
 
 		private static string ConvertTable(HtmlNode node)
 		{
