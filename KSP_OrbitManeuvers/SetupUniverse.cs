@@ -8,6 +8,7 @@ using KSP_OrbitManeuvers.Objects;
 using KSP_OrbitManeuvers.Helpers;
 using KSP_OrbitManeuvers.BodyConstants;
 using System.Reflection;
+using KSP_OrbitManeuvers.Data;
 
 namespace KSP_OrbitManeuvers
 {
@@ -22,8 +23,11 @@ namespace KSP_OrbitManeuvers
         [STAThread]
         public static void Main()
         {
-            var pr = new SetupUniverse();
+            var sd = new SetupData();
+            sd.WriteBodyParameters_FromWiki_toCsv();
 
+            var pr = new SetupUniverse();
+            
             List<string> starSystemNames = new List<string>
             {
                 "Kerbol System"//,
@@ -143,12 +147,12 @@ namespace KSP_OrbitManeuvers
                 SiderealRotationPeriod = (float)starSystem.GetType().GetField($"{planetName}_SiderealRotationPeriod").GetValue(starSystem),
                 SphereOfInfluence = (float)starSystem.GetType().GetField($"{planetName}_SphereOfInfluence").GetValue(starSystem),
 
-                AtmospherePresent = Convert.ToBoolean(starSystem.GetType().GetField($"{planetName}_AtmospherePresent").GetValue(starSystem)),
-                AtmosphericPressure = (float)starSystem.GetType().GetField($"{planetName}_AtmosphericPressure").GetValue(starSystem),
-                AtmosphericHeight = (float)starSystem.GetType().GetField($"{planetName}_AtmosphericHeight").GetValue(starSystem),
-                TemperatureMin = (float)starSystem.GetType().GetField($"{planetName}_TemperatureMin").GetValue(starSystem),
-                TemperatureMax = (float)starSystem.GetType().GetField($"{planetName}_TemperatureMax").GetValue(starSystem),
-                OxigenPresent = Convert.ToBoolean(starSystem.GetType().GetField($"{planetName}_OxygenPresent").GetValue(starSystem))
+                //AtmospherePresent = Convert.ToBoolean(starSystem.GetType().GetField($"{planetName}_AtmospherePresent").GetValue(starSystem)),
+                //AtmosphericPressure = (float)starSystem.GetType().GetField($"{planetName}_AtmosphericPressure").GetValue(starSystem),
+                //AtmosphericHeight = (float)starSystem.GetType().GetField($"{planetName}_AtmosphericHeight").GetValue(starSystem),
+                //TemperatureMin = (float)starSystem.GetType().GetField($"{planetName}_TemperatureMin").GetValue(starSystem),
+                //TemperatureMax = (float)starSystem.GetType().GetField($"{planetName}_TemperatureMax").GetValue(starSystem),
+                //OxigenPresent = Convert.ToBoolean(starSystem.GetType().GetField($"{planetName}_OxygenPresent").GetValue(starSystem))
             };
 
             for (int i = 1; i <= planet.NumberOfDirectChildren; i++)
@@ -197,17 +201,19 @@ namespace KSP_OrbitManeuvers
                 outWriter.WriteLine($"StarSystem Name: {starSystem.SystemName}");
                 foreach (Star star in starSystem.Stars)
                 {
-                    outWriter.WriteLine($"  Star Name: {star.Name}");
+                    outWriter.WriteLine($"\tStar Name: {star.Name}");
                     foreach (Planet planet in star.Planets)
                     {
-                        outWriter.WriteLine($"    Planet Name: {planet.Name}");
+                        outWriter.WriteLine($"\t\tPlanet Name: {planet.Name}");
                         foreach (Moon moon in planet.Moons)
                         {
-                            outWriter.WriteLine($"      Moon Name: {moon.Name}");
+                            outWriter.WriteLine($"\t\t\tMoon Name: {moon.Name}");
                         }
                     }
                 }
             }
         }
+
+        
     }
 }
