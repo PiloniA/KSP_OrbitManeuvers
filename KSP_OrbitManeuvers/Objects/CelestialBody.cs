@@ -8,8 +8,10 @@ namespace KSP_OrbitManeuvers.Objects
 {
     class CelestialBody
     {
+        public BodyType Type { get; set; }
         public string Name { get; set; }
         public int NumberOfDirectChildren { get; set; }
+        public List<CelestialBody> Children { get; set; }
 
         //Physical Characteristics
         public float EquatorialRadius { get; set; }
@@ -26,6 +28,9 @@ namespace KSP_OrbitManeuvers.Objects
         public float TemperatureMin { get; set; }
         public float TemperatureMax { get; set; }
         public bool OxigenPresent { get; set; }
+
+        //Orbital Characteristics
+        public long SemiMajorAxis { get; set; }
 
         public CelestialBody()
         {

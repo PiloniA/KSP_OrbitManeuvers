@@ -7,6 +7,8 @@ namespace KSP_OrbitManeuvers.Helpers
     {
         readonly public Dictionary<int, string> celestialBodyCodes = new Dictionary<int, string>()
         {
+            {(int)CelestialBodiesEnum.KERBOLSYSTEM , "Kerbolsystem" },
+
             {(int)CelestialBodiesEnum.KERBOL , "Kerbol" },
 
             {(int)CelestialBodiesEnum.MOHO , "Moho" },
@@ -33,7 +35,7 @@ namespace KSP_OrbitManeuvers.Helpers
             {(int)CelestialBodiesEnum.EELOO, "Eeloo" },
 
 
-
+            {(int)CelestialBodiesEnum.SOLSYSTEM , "Solsystem" },
 
             {(int)CelestialBodiesEnum.SOL , "Sol" },
 

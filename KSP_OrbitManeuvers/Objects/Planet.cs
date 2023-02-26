@@ -11,7 +11,7 @@ namespace KSP_OrbitManeuvers.Objects
         public List<Moon> Moons { get; set; }
 
         // Orbital Characteristics
-        public float SemiMajorAxis { get; set; }
+        public long SemiMajorAxis { get; set; }
         public float Apoapsis { get; set; }
         public float Periapsis { get; set; }
         public float OrbitalEccentricity { get; set; }

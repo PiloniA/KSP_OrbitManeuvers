@@ -6,6 +6,8 @@ public enum CelestialBodiesEnum
     // 3rd digit: Moon
 
     #region Kerbol
+    KERBOLSYSTEM = 1000,
+
     KERBOL = 100,
 
     MOHO = 110,
@@ -33,6 +35,8 @@ public enum CelestialBodiesEnum
     #endregion
 
     #region Sol
+    SOLSYSTEM = 2000,
+
     SOL = 200,
 
     MERCURY = 210,
@@ -71,4 +75,13 @@ public enum CelestialBodiesEnum
     NEREID = 282,
 
     #endregion
+}
+
+public enum BodyType
+{
+    UNIVERSE = 10000,
+    STARSYSTEM = 1000,
+    STAR = 100,
+    PLANET = 10,
+    MOON = 1
 }

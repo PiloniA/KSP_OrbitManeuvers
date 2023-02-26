@@ -12,11 +12,14 @@ using KSP_OrbitManeuvers.Data;
 
 namespace KSP_OrbitManeuvers
 {
-    public class SetupUniverse
+    public class SetupUniverse1
     {
         DummySystem starSystem = new DummySystem();
         readonly CelestialBodiesDictionary celestialDict = new CelestialBodiesDictionary();
 
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
         [STAThread]
         public static void Main()
         {
@@ -31,41 +34,23 @@ namespace KSP_OrbitManeuvers
                 //"Solar System"
             };
 
-            CelestialBody universe = pr.CreateUniverse(starSystemNames);
+            Universe universe = pr.CreateUniverse(starSystemNames);
 
-            //pr.PrintUniverse(universe);
+            pr.PrintUniverse(universe);
 
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
         }
 
-        private CelestialBody CreateUniverse(List<string> starSystemNames)
+        private Universe CreateUniverse(List<string> starSystemNames)
         {
-            CelestialBody universe = new CelestialBody();
-            foreach (int systemCnt in Enumerable.Range(1,universe.NumberOfDirectChildren))
+            Universe universe = new Universe();
+            foreach(string starSystemName in starSystemNames)
             {
-                int systemEnum = systemCnt * 1000;
-
-                CelestialBody starsystem = new CelestialBody();
-                foreach (int starCnt in Enumerable.Range(1, starsystem.NumberOfDirectChildren))
-                {
-                    CelestialBody star = new CelestialBody();
-                    foreach (int planetCnt in Enumerable.Range(1, star.NumberOfDirectChildren))
-                    {
-                        CelestialBody planet = new CelestialBody();
-                        foreach (int moonCnt in Enumerable.Range(1, planet.NumberOfDirectChildren))
-                        {
-                            CelestialBody moon = new CelestialBody();
-                            planet.Children.Add(moon);
-                        }
-                        star.Children.Add(planet);
-                    }
-                    starsystem.Children.Add(star);
-                }
-                universe.Children.Add(starsystem);
+                StarSystem starsystem = CreateStarSystem(starSystemName);
+                universe.Starsystems.Add(starsystem);
             }
-
             return universe;
         }
 
