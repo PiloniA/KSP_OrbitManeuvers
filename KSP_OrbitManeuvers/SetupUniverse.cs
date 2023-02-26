@@ -46,6 +46,8 @@ namespace KSP_OrbitManeuvers
             foreach (int systemCnt in Enumerable.Range(1,universe.NumberOfDirectChildren))
             {
                 int systemEnum = systemCnt * 1000;
+                //convert count into body enum/name
+                //read from csv
 
                 CelestialBody starsystem = new CelestialBody();
                 foreach (int starCnt in Enumerable.Range(1, starsystem.NumberOfDirectChildren))
