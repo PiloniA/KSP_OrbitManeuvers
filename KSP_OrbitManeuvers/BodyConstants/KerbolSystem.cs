@@ -23,7 +23,7 @@ namespace KSP_OrbitManeuvers.BodyConstants
                 "Jool",
                 "Laythe",
                 "Vall",
-                "Thylo",
+                "Tylo",
                 "Bop",
                 "Pol",
                 "Eeloo"

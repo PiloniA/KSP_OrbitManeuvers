@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace KSP_OrbitManeuvers.Objects
 {
-    class CelestialBody
+    public class CelestialBody
     {
+        //common Characteristics
         public BodyType Type { get; set; }
         public string Name { get; set; }
         public int NumberOfDirectChildren { get; set; }
@@ -19,6 +20,7 @@ namespace KSP_OrbitManeuvers.Objects
         public float Mass { get; set; }
         public float EscapeVelocity { get; set; }
         public float SiderealRotationPeriod { get; set; }
+        public float SolarDay { get; set; }
         public float SphereOfInfluence { get; set; }
 
         //Atomspheric Characteristics
@@ -29,8 +31,17 @@ namespace KSP_OrbitManeuvers.Objects
         public float TemperatureMax { get; set; }
         public bool OxigenPresent { get; set; }
 
-        //Orbital Characteristics
+        // Orbital Characteristics
         public long SemiMajorAxis { get; set; }
+        public float Apoapsis { get; set; }
+        public float Periapsis { get; set; }
+        public float OrbitalEccentricity { get; set; }
+        public float OrbitalInclination { get; set; }
+        public float ArgumentOfPeriapsis { get; set; }
+        public float LongitudeOfAscendingNode { get; set; }
+        public float MeanAnomalyAtBigBang { get; set; }
+        public float SiderealOrbitalPeriod { get; set; }
+        public float SynodicOrbitalPeriod { get; set; }
 
         public CelestialBody()
         {

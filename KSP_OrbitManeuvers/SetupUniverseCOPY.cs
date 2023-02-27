@@ -21,7 +21,7 @@ namespace KSP_OrbitManeuvers
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        public static void Main()
+        public static void Main_OLD()
         {
             var sd = new SetupData();
             sd.WriteBodyParameters_FromWiki_toCsv();
@@ -34,9 +34,9 @@ namespace KSP_OrbitManeuvers
                 //"Solar System"
             };
 
-            Universe universe = pr.CreateUniverse(starSystemNames);
+            //Universe universe = pr.CreateUniverse(starSystemNames);
 
-            pr.PrintUniverse(universe);
+            //pr.PrintUniverse(universe);
 
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);

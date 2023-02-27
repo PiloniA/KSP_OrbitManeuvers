@@ -20,8 +20,8 @@ namespace KSP_OrbitManeuvers
         [STAThread]
         public static void Main()
         {
-            var sd = new SetupData();
-            sd.WriteBodyParameters_FromWiki_toCsv();
+            //var sd = new SetupData();
+            //sd.WriteBodyParameters_FromWiki_toCsv();
 
             var pr = new SetupUniverse();
             
@@ -42,23 +42,33 @@ namespace KSP_OrbitManeuvers
 
         private CelestialBody CreateUniverse(List<string> starSystemNames)
         {
-            CelestialBody universe = new CelestialBody();
+            SetupData setup = new SetupData();
+            CelestialBody universe = new CelestialBody
+            {
+                NumberOfDirectChildren = 1
+            };
             foreach (int systemCnt in Enumerable.Range(1,universe.NumberOfDirectChildren))
             {
                 int systemEnum = systemCnt * 1000;
-                //convert count into body enum/name
-                //read from csv
+                string systemName = new CelestialBodiesDictionary().celestialBodyCodes[systemEnum];
+                CelestialBody starsystem = setup.ReadFromCsv(systemName);
 
-                CelestialBody starsystem = new CelestialBody();
                 foreach (int starCnt in Enumerable.Range(1, starsystem.NumberOfDirectChildren))
                 {
-                    CelestialBody star = new CelestialBody();
+                    int starEnum = starCnt * 100;
+                    string starName = new CelestialBodiesDictionary().celestialBodyCodes[starEnum];
+                    CelestialBody star = setup.ReadFromCsv(starName);
+
                     foreach (int planetCnt in Enumerable.Range(1, star.NumberOfDirectChildren))
                     {
-                        CelestialBody planet = new CelestialBody();
+                        int planetEnum = planetCnt * 10;
+                        string planetName = new CelestialBodiesDictionary().celestialBodyCodes[planetEnum];
+                        CelestialBody planet = setup.ReadFromCsv(starName);
                         foreach (int moonCnt in Enumerable.Range(1, planet.NumberOfDirectChildren))
                         {
-                            CelestialBody moon = new CelestialBody();
+                            int moonEnum = moonCnt * 1;
+                            string moonName = new CelestialBodiesDictionary().celestialBodyCodes[moonEnum];
+                            CelestialBody moon = setup.ReadFromCsv(moonName);
                             planet.Children.Add(moon);
                         }
                         star.Children.Add(planet);
