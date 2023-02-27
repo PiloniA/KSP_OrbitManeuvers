@@ -104,20 +104,20 @@ namespace KSP_OrbitManeuvers
             {
                 Name = starName,
 
-                NumberOfDirectChildren = Convert.ToInt32(starSystem.GetType().GetField($"{starName}_NumberOfDirectChildren").GetValue(starSystem)),
-                EquatorialRadius = (float)starSystem.GetType().GetField($"{starName}_EquatorialRadius").GetValue(starSystem),
-                Mass = (float)starSystem.GetType().GetField($"{starName}_Mass").GetValue(starSystem),
-                Density = (float)starSystem.GetType().GetField($"{starName}_Density").GetValue(starSystem),
-                EscapeVelocity = (float)starSystem.GetType().GetField($"{starName}_EscapeVelocity").GetValue(starSystem),
-                SiderealRotationPeriod = (float)starSystem.GetType().GetField($"{starName}_SiderealRotationPeriod").GetValue(starSystem),
-                SphereOfInfluence = (float)starSystem.GetType().GetField($"{starName}_SphereOfInfluence").GetValue(starSystem),
+                //NumberOfDirectChildren = Convert.ToInt32(starSystem.GetType().GetField($"{starName}_NumberOfDirectChildren").GetValue(starSystem)),
+                //EquatorialRadius = (float)starSystem.GetType().GetField($"{starName}_EquatorialRadius").GetValue(starSystem),
+                //Mass = (float)starSystem.GetType().GetField($"{starName}_Mass").GetValue(starSystem),
+                //Density = (float)starSystem.GetType().GetField($"{starName}_Density").GetValue(starSystem),
+                //EscapeVelocity = (float)starSystem.GetType().GetField($"{starName}_EscapeVelocity").GetValue(starSystem),
+                //SiderealRotationPeriod = (float)starSystem.GetType().GetField($"{starName}_SiderealRotationPeriod").GetValue(starSystem),
+                //SphereOfInfluence = (float)starSystem.GetType().GetField($"{starName}_SphereOfInfluence").GetValue(starSystem),
 
-                AtmospherePresent = Convert.ToBoolean(starSystem.GetType().GetField($"{starName}_AtmospherePresent").GetValue(starSystem)),
-                AtmosphericPressure = (float)starSystem.GetType().GetField($"{starName}_AtmosphericPressure").GetValue(starSystem),
-                AtmosphericHeight = (float)starSystem.GetType().GetField($"{starName}_AtmosphericHeight").GetValue(starSystem),
-                TemperatureMin = (float)starSystem.GetType().GetField($"{starName}_TemperatureMin").GetValue(starSystem),
-                TemperatureMax = (float)starSystem.GetType().GetField($"{starName}_TemperatureMax").GetValue(starSystem),
-                OxigenPresent = Convert.ToBoolean(starSystem.GetType().GetField($"{starName}_OxygenPresent").GetValue(starSystem))
+                //AtmospherePresent = Convert.ToBoolean(starSystem.GetType().GetField($"{starName}_AtmospherePresent").GetValue(starSystem)),
+                //AtmosphericPressure = (float)starSystem.GetType().GetField($"{starName}_AtmosphericPressure").GetValue(starSystem),
+                //AtmosphericHeight = (float)starSystem.GetType().GetField($"{starName}_AtmosphericHeight").GetValue(starSystem),
+                //TemperatureMin = (float)starSystem.GetType().GetField($"{starName}_TemperatureMin").GetValue(starSystem),
+                //TemperatureMax = (float)starSystem.GetType().GetField($"{starName}_TemperatureMax").GetValue(starSystem),
+                //OxigenPresent = Convert.ToBoolean(starSystem.GetType().GetField($"{starName}_OxygenPresent").GetValue(starSystem))
             };
 
             for (int i = 1; i <= star.NumberOfDirectChildren; i++)
@@ -139,13 +139,13 @@ namespace KSP_OrbitManeuvers
             {
                 Name = planetName,
 
-                NumberOfDirectChildren = Convert.ToInt32(starSystem.GetType().GetField($"{planetName}_NumberOfDirectChildren").GetValue(starSystem)),
-                EquatorialRadius = (float)starSystem.GetType().GetField($"{planetName}_EquatorialRadius").GetValue(starSystem),
-                Mass = (float)starSystem.GetType().GetField($"{planetName}_Mass").GetValue(starSystem),
-                Density = (float)starSystem.GetType().GetField($"{planetName}_Density").GetValue(starSystem),
-                EscapeVelocity = (float)starSystem.GetType().GetField($"{planetName}_EscapeVelocity").GetValue(starSystem),
-                SiderealRotationPeriod = (float)starSystem.GetType().GetField($"{planetName}_SiderealRotationPeriod").GetValue(starSystem),
-                SphereOfInfluence = (float)starSystem.GetType().GetField($"{planetName}_SphereOfInfluence").GetValue(starSystem),
+                //NumberOfDirectChildren = Convert.ToInt32(starSystem.GetType().GetField($"{planetName}_NumberOfDirectChildren").GetValue(starSystem)),
+                //EquatorialRadius = (float)starSystem.GetType().GetField($"{planetName}_EquatorialRadius").GetValue(starSystem),
+                //Mass = (float)starSystem.GetType().GetField($"{planetName}_Mass").GetValue(starSystem),
+                //Density = (float)starSystem.GetType().GetField($"{planetName}_Density").GetValue(starSystem),
+                //EscapeVelocity = (float)starSystem.GetType().GetField($"{planetName}_EscapeVelocity").GetValue(starSystem),
+                //SiderealRotationPeriod = (float)starSystem.GetType().GetField($"{planetName}_SiderealRotationPeriod").GetValue(starSystem),
+                //SphereOfInfluence = (float)starSystem.GetType().GetField($"{planetName}_SphereOfInfluence").GetValue(starSystem),
 
                 //AtmospherePresent = Convert.ToBoolean(starSystem.GetType().GetField($"{planetName}_AtmospherePresent").GetValue(starSystem)),
                 //AtmosphericPressure = (float)starSystem.GetType().GetField($"{planetName}_AtmosphericPressure").GetValue(starSystem),
@@ -173,20 +173,20 @@ namespace KSP_OrbitManeuvers
             {
                 Name = moonName,
 
-                NumberOfDirectChildren = Convert.ToInt32(starSystem.GetType().GetField($"{moonName}_NumberOfDirectChildren").GetValue(starSystem)),
-                EquatorialRadius = (float)starSystem.GetType().GetField($"{moonName}_EquatorialRadius").GetValue(starSystem),
-                Mass = (float)starSystem.GetType().GetField($"{moonName}_Mass").GetValue(starSystem),
-                Density = (float)starSystem.GetType().GetField($"{moonName}_Density").GetValue(starSystem),
-                EscapeVelocity = (float)starSystem.GetType().GetField($"{moonName}_EscapeVelocity").GetValue(starSystem),
-                SiderealRotationPeriod = (float)starSystem.GetType().GetField($"{moonName}_SiderealRotationPeriod").GetValue(starSystem),
-                SphereOfInfluence = (float)starSystem.GetType().GetField($"{moonName}_SphereOfInfluence").GetValue(starSystem),
+                //NumberOfDirectChildren = Convert.ToInt32(starSystem.GetType().GetField($"{moonName}_NumberOfDirectChildren").GetValue(starSystem)),
+                //EquatorialRadius = (float)starSystem.GetType().GetField($"{moonName}_EquatorialRadius").GetValue(starSystem),
+                //Mass = (float)starSystem.GetType().GetField($"{moonName}_Mass").GetValue(starSystem),
+                //Density = (float)starSystem.GetType().GetField($"{moonName}_Density").GetValue(starSystem),
+                //EscapeVelocity = (float)starSystem.GetType().GetField($"{moonName}_EscapeVelocity").GetValue(starSystem),
+                //SiderealRotationPeriod = (float)starSystem.GetType().GetField($"{moonName}_SiderealRotationPeriod").GetValue(starSystem),
+                //SphereOfInfluence = (float)starSystem.GetType().GetField($"{moonName}_SphereOfInfluence").GetValue(starSystem),
 
-                AtmospherePresent = Convert.ToBoolean(starSystem.GetType().GetField($"{moonName}_AtmospherePresent").GetValue(starSystem)),
-                AtmosphericPressure = (float)starSystem.GetType().GetField($"{moonName}_AtmosphericPressure").GetValue(starSystem),
-                AtmosphericHeight = (float)starSystem.GetType().GetField($"{moonName}_AtmosphericHeight").GetValue(starSystem),
-                TemperatureMin = (float)starSystem.GetType().GetField($"{moonName}_TemperatureMin").GetValue(starSystem),
-                TemperatureMax = (float)starSystem.GetType().GetField($"{moonName}_TemperatureMax").GetValue(starSystem),
-                OxigenPresent = Convert.ToBoolean(starSystem.GetType().GetField($"{moonName}_OxygenPresent").GetValue(starSystem))
+                //AtmospherePresent = Convert.ToBoolean(starSystem.GetType().GetField($"{moonName}_AtmospherePresent").GetValue(starSystem)),
+                //AtmosphericPressure = (float)starSystem.GetType().GetField($"{moonName}_AtmosphericPressure").GetValue(starSystem),
+                //AtmosphericHeight = (float)starSystem.GetType().GetField($"{moonName}_AtmosphericHeight").GetValue(starSystem),
+                //TemperatureMin = (float)starSystem.GetType().GetField($"{moonName}_TemperatureMin").GetValue(starSystem),
+                //TemperatureMax = (float)starSystem.GetType().GetField($"{moonName}_TemperatureMax").GetValue(starSystem),
+                //OxigenPresent = Convert.ToBoolean(starSystem.GetType().GetField($"{moonName}_OxygenPresent").GetValue(starSystem))
             };
 
             return moon;
