@@ -51,7 +51,10 @@ namespace KSP_OrbitManeuvers
             {
                 int systemEnum = systemCnt * 1000;
                 string systemName = new CelestialBodiesDictionary().celestialBodyCodes[systemEnum];
-                CelestialBody starsystem = setup.ReadFromCsv(systemName);
+                CelestialBody starsystem = new CelestialBody()
+                {
+                    NumberOfDirectChildren = 1
+                };
 
                 foreach (int starCnt in Enumerable.Range(1, starsystem.NumberOfDirectChildren))
                 {
