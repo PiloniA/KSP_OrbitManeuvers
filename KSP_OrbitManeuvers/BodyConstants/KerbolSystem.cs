@@ -2,7 +2,7 @@
 
 namespace KSP_OrbitManeuvers.BodyConstants
 {
-    public class KerbolSystem : DummySystem
+    public class KerbolSystem
     {
         public List<string> bodies;
 

@@ -1,6 +1,6 @@
 ﻿namespace KSP_OrbitManeuvers.BodyConstants
 {
-    public class SolarSystem : DummySystem
+    public class SolarSystem
     {
         public const int Sol_NumberOfDirectChildren = 5;
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KSP_OrbitManeuvers.Enums;
 
 namespace KSP_OrbitManeuvers.Objects
 {
@@ -45,7 +46,7 @@ namespace KSP_OrbitManeuvers.Objects
 
         public CelestialBody()
         {
-            
+            Children = new List<CelestialBody>();
         }
     }
 }

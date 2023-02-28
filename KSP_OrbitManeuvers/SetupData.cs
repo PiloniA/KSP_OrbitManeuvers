@@ -11,6 +11,7 @@ using CsvHelper.Configuration;
 using System.Linq;
 using KSP_OrbitManeuvers.Helpers;
 using System;
+using KSP_OrbitManeuvers.Enums;
 
 namespace KSP_OrbitManeuvers.Data
 {
@@ -26,7 +27,6 @@ namespace KSP_OrbitManeuvers.Data
 
 			foreach (string bodyName in system.bodies)
 			{
-				var body = new CelestialBody();
 				records.Add(ParseHtml(CallUrl(baseUrl + bodyName).Result, bodyName));
 			}
 
@@ -233,8 +233,6 @@ namespace KSP_OrbitManeuvers.Data
 				records = csv.GetRecords<CelestialBody>().ToList();
 			}
 			CelestialBody body  = records.Where(x => x.Name == bodyname).Single();
-			//CelestialBody body = new CelestialBody();
-			//var test = typeof(CelestialBody).prop
 			return body;
         }
 	}

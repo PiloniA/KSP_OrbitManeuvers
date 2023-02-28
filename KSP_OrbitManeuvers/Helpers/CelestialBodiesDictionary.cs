@@ -1,5 +1,5 @@
-﻿//namespace KSP_OrbitManeuvers.Enums
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using KSP_OrbitManeuvers.Enums;
 
 namespace KSP_OrbitManeuvers.Helpers
 {

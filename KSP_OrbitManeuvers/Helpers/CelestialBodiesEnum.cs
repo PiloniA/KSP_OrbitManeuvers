@@ -1,87 +1,91 @@
-﻿//namespace KSP_OrbitManeuvers.Enums
-public enum CelestialBodiesEnum
+﻿namespace KSP_OrbitManeuvers.Enums
 {
-    // 1st digit: Star
-    // 2nd digit: Planet
-    // 3rd digit: Moon
+    public enum CelestialBodiesEnum
+    {
+        // 1st digit: Starsystem
+        // 2nd digit: Star
+        // 3rd digit: Planet
+        // 4th digit: Moon
 
-    #region Kerbol
-    KERBOLSYSTEM = 1000,
+        #region Kerbol
+        KERBOLSYSTEM = 1000,
 
-    KERBOL = 100,
+        KERBOL = 1100,
 
-    MOHO = 110,
+        MOHO = 1110,
 
-    EVE = 120,
-    GILLY = 121,
+        EVE = 1120,
+        GILLY = 1121,
 
-    KERBIN = 130,
-    MUN = 131,
-    MINMUS = 132,
+        KERBIN = 1130,
+        MUN = 1131,
+        MINMUS = 1132,
 
-    DUNA = 140,
-    IKE = 141,
+        DUNA = 1140,
+        IKE = 1141,
 
-    DRES = 150,
+        DRES = 1150,
 
-    JOOL = 160,
-    LAYTHE = 161,
-    VALL = 162,
-    TYLO = 163,
-    BOP = 164,
-    POL = 165,
+        JOOL = 1160,
+        LAYTHE = 1161,
+        VALL = 1162,
+        TYLO = 1163,
+        BOP = 1164,
+        POL = 1165,
 
-    EELOO = 170,
-    #endregion
+        EELOO = 1170,
+        #endregion
 
-    #region Sol
-    SOLSYSTEM = 2000,
+        #region Sol
+        SOLSYSTEM = 2000,
 
-    SOL = 200,
+        SOL = 2200,
 
-    MERCURY = 210,
-    
-    VENUS = 220,
+        MERCURY = 2210,
 
-    EARTH = 230,
-    LUNA = 231,
+        VENUS = 2220,
 
-    MARS = 240,
-    PHOBOS = 241,
-    DEIMOS = 242,
+        EARTH = 2230,
+        LUNA = 2231,
 
-    JUPITER = 250,
-    IO = 251,
-    EUROPA = 252,
-    GANYMED = 253,
-    KALLISTO = 254,
+        MARS = 2240,
+        PHOBOS = 2241,
+        DEIMOS = 2242,
 
-    SATURN = 260,
-    TETHYS = 261,
-    DIONE = 262,
-    RHEA = 263,
-    TITAN = 264,
-    IAPETUS = 265,
+        JUPITER = 2250,
+        IO = 2251,
+        EUROPA = 2252,
+        GANYMED = 2253,
+        KALLISTO = 2254,
 
-    URANUS = 270,
-    MIRANDA = 271,
-    ARIEL = 272,
-    UMBRIEL = 273,
-    TITANIA = 274,
-    OBERON = 275,
+        SATURN = 2260,
+        TETHYS = 2261,
+        DIONE = 2262,
+        RHEA = 2263,
+        TITAN = 2264,
+        IAPETUS = 2265,
 
-    NEPTUN = 280,
-    TRITON = 281,
-    NEREID = 282,
+        URANUS = 2270,
+        MIRANDA = 2271,
+        ARIEL = 2272,
+        UMBRIEL = 2273,
+        TITANIA = 2274,
+        OBERON = 2275,
 
-    #endregion
+        NEPTUN = 2280,
+        TRITON = 2281,
+        NEREID = 2282,
+
+        #endregion
+    }
+
+    public enum BodyType
+    {
+        UNIVERSE = 10000,
+        STARSYSTEM = 1000,
+        STAR = 100,
+        PLANET = 10,
+        MOON = 1
+    }
 }
 
-public enum BodyType
-{
-    UNIVERSE = 10000,
-    STARSYSTEM = 1000,
-    STAR = 100,
-    PLANET = 10,
-    MOON = 1
-}
