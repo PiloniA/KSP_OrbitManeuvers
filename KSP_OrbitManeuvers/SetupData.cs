@@ -92,146 +92,124 @@ namespace KSP_OrbitManeuvers.Data
 					break;
             }
 
-            // common Characteristics
+            // common Characteristics (3)
             BodyType type = (BodyType)bodyType;
             string name = bodyName;
             int numberOfDirectChildren = numberOfChildren;
 
             HtmlNodeCollection tmp;
-            // Physical Characteristics4
-            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Equatorial radius')]]]/td[2]/pan/text()");
-            double? test = tmp == null ? null : (double?)double.Parse(tmp.Single().InnerText.Replace("&#8201;", "").Replace(".", ","));
+            HtmlNodeCollection tmp2;
 
+            // Physical Characteristics (7)
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Equatorial radius')]]]/td[2]/span/text()");
+            double? equatorialRadius = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace(".", ","));
 
-            var test2 = 1;
-            //Density = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Density')]]]/td[2]/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-            //Mass = double.Parse
-            //    (
-            //        htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Mass')]]]/td[2]/span/text()").InnerText.Replace("&#8201;", "").Replace("×10", "e").Replace(".", ",") +
-            //        htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Mass')]]]/td[2]/span/sup/text()").InnerText.Replace("&#8201;", "")
-            //    ),
-            //EscapeVelocity = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Escape velocity')]]]/td[2]/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-            //SiderealRotationPeriod = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Sidereal rotation period')]]]/td[2]/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-            //SolarDay = (bodyType == 1 || bodyType == 100)
-            //?
-            //(double?)null
-            //: double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Solar day')]]]/td[2]/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-            ////SphereOfInfluence = (bodyName == "Jool" || bodyName == "Eeloo") ?
-            ////double.Parse
-            ////(
-            ////    htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Sphere of influence')]]]/td[2]/span/span/text()").InnerText.Replace("&#8201;", "").Replace("×10", "e").Replace(".", ",") +
-            ////    htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Sphere of influence')]]]/td[2]/span/span/sup/text()").InnerText.Replace("&#8201;", "")
-            ////)
-            ////: double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Sphere of influence')]]]/td[2]/span/span/text()").InnerText.Replace("&#8201;", "").Replace("×10", "e").Replace(".", ",")),
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Density')]]]/td[2]/span/text()");
+            double? density = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace(".", ","));
 
-            ////Atomspheric Characteristics
-            //AtmospherePresent = htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[contains(text(), ' Atmosphere present')]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace(".", ",").Contains("Yes"),
-            //AtmosphericPressure = ((htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[contains(text(), ' Atmosphere present')]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace(".", ",").Contains("Yes"))
-            //    ?
-            //    double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Atmospheric pressure')]]]/td[2]/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ","))
-            //    : (double?)null),
-            //AtmosphericHeight = ((htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[contains(text(), ' Atmosphere present')]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace(".", ",").Contains("Yes"))
-            //                ?
-            //                double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[contains(text(), ' Atmospheric height')]]/td[2]/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ","))
-            //                : (double?)null),
-            //TemperatureMin = ((htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[contains(text(), ' Atmosphere present')]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace(".", ",").Contains("Yes"))
-            //                ?
-            //                double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[sub[contains(text(), 'min')]]]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace("&#160;°C ", "").Replace(".", ","))
-            //                : (double?)null),
-            //TemperatureMax = ((htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[contains(text(), ' Atmosphere present')]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace(".", ",").Contains("Yes"))
-            //                ?
-            //                double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[sub[contains(text(), 'max')]]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace("&#160;°C ", "").Replace(".", ","))
-            //                : (double?)null),
-            //OxigenPresent = ((htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[contains(text(), ' Atmosphere present')]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace(".", ",").Contains("Yes"))
-            //                ?
-            //                htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Oxygen present')]]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace(".", ",").Contains("Yes")
-            //: (bool?)null),
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Mass')]]]/td[2]/span/text()");
+            tmp2 = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Mass')]]]/td[2]/span/sup/text()");
+            double? mass = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace("×10", "e").Replace(".", ",") + tmp2.Single().InnerText.Replace("&#8201;", ""));
 
-            //// Orbital Characteristics
-            ////            SemiMajorAxis = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Semi-major axis')]]]/td[2]/span/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-            ////            Apoapsis = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Apoapsis')]]]/td[2]/span/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-            ////            Periapsis = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Periapsis')]]]/td[2]/span/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-            ////            OrbitalEccentricity = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Orbital eccentricity')]]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-            ////            OrbitalInclination = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Orbital inclination')]]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace("&#160;°\n", "").Replace(".", ",")),
-            ////            ArgumentOfPeriapsis = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Argument of periapsis')]]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace("&#160;°\n", "").Replace(".", ",")),
-            ////            LongitudeOfAscendingNode = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Longitude of the ascending node')]]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace("&#160;°\n", "").Replace(".", ",")),
-            ////            MeanAnomalyAtBigBang = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Mean anomaly')]]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace("&#160;rad ", "").Replace(".", ",")),
-            ////            SiderealOrbitalPeriod = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Sidereal orbital period')]]]/td[2]/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-            ////            SynodicOrbitalPeriod = bodyName == "Kerbin"
-            ////?
-            ////(double?)null
-            ////: double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Synodic orbital period')]]]/td[2]/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Escape velocity')]]]/td[2]/span/text()");
+            double? escapeVelocity = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace(".", ","));
 
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Sidereal rotation period')]]]/td[2]/span/text()");
+            double? siderealRotationPeriod = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace(".", ","));
 
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Solar day')]]]/td[2]/span/text()");
+            double? solarDay = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace(".", ","));
 
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Sphere of influence')]]]/td[2]/span/span/text()");
+            tmp2 = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Sphere of influence')]]]/td[2]/span/span/sup/text()");
+            double? sphereOfInfuence = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace("×10", "e").Replace(".", ",") + (tmp2 == null ? "" : tmp2.Single().InnerText.Replace("&#8201;", "")));
+            sphereOfInfuence = bodyName == "Kerbol" ? double.PositiveInfinity : sphereOfInfuence;
 
-			CelestialBody body = new CelestialBody()
-			{
-				// common Characteristics
-				Type = (BodyType)bodyType,
-				Name = bodyName,
-				NumberOfDirectChildren = numberOfChildren,
+            //Atomspheric Characteristics (6)
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[contains(text(), ' Atmosphere present')]]/td[2]/text()");
+            bool? atmospherePresent = tmp == null ? null : (bool?)(tmp.First().InnerText.Replace("&#8201;", "").Replace(".", ",").Contains("Yes"));
+
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Atmospheric pressure')]]]/td[2]/span/text()");
+            double? atmosphericPressure = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace(".", ","));
+
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[contains(text(), ' Atmospheric height')]]/td[2]/span/text()");
+            double? atmosphericHeight = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace(".", ","));
+
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[sub[contains(text(), 'min')]]]]/td[2]/text()");
+            double? temperatureMin = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace("&#160;°C ", "").Replace(".", ","));
+
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[sub[contains(text(), 'max')]]]/td[2]/text()");
+            double? temperatureMax = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace("&#160;°C ", "").Replace(".", ","));
+
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Oxygen present')]]]/td[2]/text()");
+            bool? oxigenPresent = tmp == null ? null : (bool?)(tmp.First().InnerText.Replace("&#8201;", "").Replace(".", ",").Contains("Yes"));
+
+            // Orbital Characteristics (10)
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Semi-major axis')]]]/td[2]/span/span/text()");
+            double? semiMajorAxis = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace(".", ","));
+
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Apoapsis')]]]/td[2]/span/span/text()");
+            double? apoapsis = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace(".", ","));
+
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Periapsis')]]]/td[2]/span/span/text()");
+            double? periapsis = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace(".", ","));
+
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Orbital eccentricity')]]]/td[2]/text()");
+            double? orbitalEccentricity = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace(".", ","));
+
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Orbital inclination')]]]/td[2]/text()");
+            double? orbitalInclination = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace("&#160;°\n", "").Replace(".", ","));
+
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Argument of periapsis')]]]/td[2]/text()");
+            double? argumentOfPeriapsis = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace("&#160;°\n", "").Replace(".", ","));
+
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Longitude of the ascending node')]]]/td[2]/text()");
+            double? longitudeOfAscendingNode = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace("&#160;°\n", "").Replace(".", ","));
+
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Mean anomaly')]]]/td[2]/text()");
+            double? meanAnomaly = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace("&#160;rad ", "").Replace(".", ","));
+
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Sidereal orbital period')]]]/td[2]/span/text()");
+            double? siderealOrbitalPeriod = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace(".", ","));
+
+            tmp = htmlDoc.DocumentNode.SelectNodes("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Synodic orbital period')]]]/td[2]/span/text()");
+            double? synodicOrbitalPeriod = tmp == null ? null : (double?)double.Parse(tmp.First().InnerText.Replace("&#8201;", "").Replace(".", ","));
+
+            CelestialBody body = new CelestialBody()
+            {
+                // common Characteristics
+                Type = type,
+                Name = name,
+                NumberOfDirectChildren = numberOfChildren,
 
                 // Physical Characteristics
-                EquatorialRadius = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Equatorial radius')]]]/td[2]/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-                Density = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Density')]]]/td[2]/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-                Mass = double.Parse
-                    (
-                        htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Mass')]]]/td[2]/span/text()").InnerText.Replace("&#8201;", "").Replace("×10", "e").Replace(".", ",") +
-                        htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Mass')]]]/td[2]/span/sup/text()").InnerText.Replace("&#8201;", "")
-                    ),
-                EscapeVelocity = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Escape velocity')]]]/td[2]/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-                SiderealRotationPeriod = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Sidereal rotation period')]]]/td[2]/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-                SolarDay = (bodyType == 1 || bodyType == 100)
-                ?
-                (double?)null
-                : double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Solar day')]]]/td[2]/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-                //SphereOfInfluence = (bodyName == "Jool" || bodyName == "Eeloo") ?
-                //double.Parse
-                //(
-                //    htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Sphere of influence')]]]/td[2]/span/span/text()").InnerText.Replace("&#8201;", "").Replace("×10", "e").Replace(".", ",") +
-                //    htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Sphere of influence')]]]/td[2]/span/span/sup/text()").InnerText.Replace("&#8201;", "")
-                //)
-                //: double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Sphere of influence')]]]/td[2]/span/span/text()").InnerText.Replace("&#8201;", "").Replace("×10", "e").Replace(".", ",")),
+                EquatorialRadius = equatorialRadius,
+                Density = density,
+                Mass = mass,
+                EscapeVelocity = escapeVelocity,
+                SiderealRotationPeriod = siderealRotationPeriod,
+                SolarDay = solarDay,
+                SphereOfInfluence = sphereOfInfuence,
 
                 //Atomspheric Characteristics
-                AtmospherePresent = htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[contains(text(), ' Atmosphere present')]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace(".", ",").Contains("Yes"),
-                AtmosphericPressure = ((htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[contains(text(), ' Atmosphere present')]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace(".", ",").Contains("Yes"))
-                    ?
-                    double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Atmospheric pressure')]]]/td[2]/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ","))
-                    : (double?)null),
-                AtmosphericHeight = ((htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[contains(text(), ' Atmosphere present')]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace(".", ",").Contains("Yes"))
-                               ?
-                               double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[contains(text(), ' Atmospheric height')]]/td[2]/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ","))
-                               : (double?)null),
-                TemperatureMin = ((htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[contains(text(), ' Atmosphere present')]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace(".", ",").Contains("Yes"))
-                               ?
-                               double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[sub[contains(text(), 'min')]]]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace("&#160;°C ", "").Replace(".", ","))
-                               : (double?)null),
-                TemperatureMax = ((htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[contains(text(), ' Atmosphere present')]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace(".", ",").Contains("Yes"))
-                               ?
-                               double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[sub[contains(text(), 'max')]]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace("&#160;°C ", "").Replace(".", ","))
-                               : (double?)null),
-                OxigenPresent = ((htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[contains(text(), ' Atmosphere present')]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace(".", ",").Contains("Yes"))
-                               ?
-                               htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Oxygen present')]]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace(".", ",").Contains("Yes")
-                : (bool?)null),
+                AtmospherePresent = atmospherePresent,
+                AtmosphericPressure = atmosphericPressure,
+                AtmosphericHeight = atmosphericHeight,
+                TemperatureMin = temperatureMin,
+                TemperatureMax = temperatureMax,
+                OxigenPresent = oxigenPresent,
 
-                // Orbital Characteristics
-                //            SemiMajorAxis = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Semi-major axis')]]]/td[2]/span/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-                //            Apoapsis = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Apoapsis')]]]/td[2]/span/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-                //            Periapsis = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Periapsis')]]]/td[2]/span/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-                //            OrbitalEccentricity = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Orbital eccentricity')]]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-                //            OrbitalInclination = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Orbital inclination')]]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace("&#160;°\n", "").Replace(".", ",")),
-                //            ArgumentOfPeriapsis = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Argument of periapsis')]]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace("&#160;°\n", "").Replace(".", ",")),
-                //            LongitudeOfAscendingNode = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Longitude of the ascending node')]]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace("&#160;°\n", "").Replace(".", ",")),
-                //            MeanAnomalyAtBigBang = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Mean anomaly')]]]/td[2]/text()").InnerText.Replace("&#8201;", "").Replace("&#160;rad ", "").Replace(".", ",")),
-                //            SiderealOrbitalPeriod = double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Sidereal orbital period')]]]/td[2]/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-                //            SynodicOrbitalPeriod = bodyName == "Kerbin"
-                //?
-                //(double?)null
-                //: double.Parse(htmlDoc.DocumentNode.SelectSingleNode("//*[@id='mw-content-text']/div[1]/table/tr[td[a[contains(text(), 'Synodic orbital period')]]]/td[2]/span/text()").InnerText.Replace("&#8201;", "").Replace(".", ",")),
-
+                //Orbital Characteristics
+                SemiMajorAxis = semiMajorAxis,
+                Apoapsis = apoapsis,
+                Periapsis = periapsis,
+                OrbitalEccentricity = orbitalEccentricity,
+                OrbitalInclination = orbitalInclination,
+                ArgumentOfPeriapsis = argumentOfPeriapsis,
+                LongitudeOfAscendingNode = longitudeOfAscendingNode,
+                MeanAnomalyAtBigBang = meanAnomaly,
+                SiderealOrbitalPeriod = siderealOrbitalPeriod,
+                SynodicOrbitalPeriod = synodicOrbitalPeriod
             };
 			
 			return body;
