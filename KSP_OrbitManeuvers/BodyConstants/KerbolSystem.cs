@@ -4,11 +4,12 @@ namespace KSP_OrbitManeuvers.BodyConstants
 {
     public class KerbolSystem
     {
-        public List<string> bodies;
+        public List<string> Bodies { get; set; }
+        public const double GravitationalConstant = 6.6743e-11;
 
         public KerbolSystem()
         {
-            bodies = new List<string>()
+            Bodies = new List<string>()
             {
                 "Kerbol",
                 "Moho",

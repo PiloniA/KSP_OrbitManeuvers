@@ -25,7 +25,7 @@ namespace KSP_OrbitManeuvers.Data
 			//create csv with header
 			var records = new List<CelestialBody>();
 
-			foreach (string bodyName in system.bodies)
+			foreach (string bodyName in system.Bodies)
 			{
 				records.Add(ParseHtml(CallUrl(baseUrl + bodyName).Result, bodyName));
 			}

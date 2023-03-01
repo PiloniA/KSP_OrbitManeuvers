@@ -23,6 +23,9 @@ namespace KSP_OrbitManeuvers
             var pr = new SetupUniverse();
             CelestialBody universe = pr.CreateUniverse();
             pr.PrintUniverse(universe);
+            CelestialBody body = universe.Children.Where(x => x.Name == "Kerbolsystem").Single().Children.Where(x => x.Name == "Kerbol").Single().Children.Where(x => x.Name == "Kerbin").Single();
+            double valocityAP = CalculateOrbitParameters.CalculateVelocity_At_Apoapsis(body, 70000, 70000);
+            double period = CalculateOrbitParameters.CalculatePeriod(body, 70000, 70000);
         }
 
         private CelestialBody CreateUniverse()
