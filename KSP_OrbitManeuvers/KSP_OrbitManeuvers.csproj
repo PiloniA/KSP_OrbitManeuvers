@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="BodyConstants\KerbolSystem.cs" />
     <Compile Include="BodyConstants\SolarSystem.cs" />
+    <Compile Include="CalculateOrbitChange.cs" />
     <Compile Include="CalculateTransfers.cs" />
     <Compile Include="CalculateTransferWindows.cs" />
     <Compile Include="SetupData.cs" />
@@ -109,6 +110,9 @@
     </Compile>
     <Compile Include="SetupUniverse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
