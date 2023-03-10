@@ -22,10 +22,23 @@ namespace KSP_OrbitManeuvers
 
             var pr = new SetupUniverse();
             CelestialBody universe = pr.CreateUniverse();
-            pr.PrintUniverse(universe);
-            CelestialBody body = universe.Children.Where(x => x.Name == "Kerbolsystem").Single().Children.Where(x => x.Name == "Kerbol").Single().Children.Where(x => x.Name == "Kerbin").Single();
-            double valocityAP = CalculateOrbitParameters.CalculateVelocity_At_Apoapsis(body, 70000, 70000);
-            double period = CalculateOrbitParameters.CalculatePeriod(body, 70000, 70000);
+            //pr.PrintUniverse(universe);
+            CelestialBody kerbol = universe.Children.Where(x => x.Name == "Kerbolsystem").Single().Children.Where(x => x.Name == "Kerbol").Single();
+            CelestialBody eve = universe.Children.Where(x => x.Name == "Kerbolsystem").Single().Children.Where(x => x.Name == "Kerbol").Single().Children.Where(x => x.Name == "Eve").Single();
+            CelestialBody kerbin = universe.Children.Where(x => x.Name == "Kerbolsystem").Single().Children.Where(x => x.Name == "Kerbol").Single().Children.Where(x => x.Name == "Kerbin").Single();
+            double valocityAP = CalculateOrbitParameters.CalculateVelocity_At_Apoapsis(eve, 70000, 70000);
+            //double period = CalculateOrbitParameters.CalculatePeriod(eve, 70000, 70000);
+
+            //calculate half orbit of Eve around Sun
+            double periodEve = (double)eve.SiderealOrbitalPeriod;
+            //calculate time grom kerbin ap to eve pe
+            double transferTime = CalculateOrbitParameters.CalculatePeriod(kerbol, (double)kerbin.Apoapsis, (double)eve.Periapsis) / 2;
+            //calculate eve traverse angle within transferTime
+            // 360° in periodEve
+            // x°   in transferTime
+            // x = 360/periodEve * transferTime
+            double traverseAngle = 360 / periodEve * transferTime;
+
         }
 
         private CelestialBody CreateUniverse()

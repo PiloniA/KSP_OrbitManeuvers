@@ -227,7 +227,7 @@ namespace KSP_OrbitManeuvers.Data
 		public CelestialBody ReadFromCsv(string bodyname)
         {
 			List<CelestialBody> records;
-			using (var reader = new StreamReader("C:\\Users\\U13D1LV\\source\\repos\\Privat\\KSP_OrbitManeuvers\\KSP_OrbitManeuvers\\bin\\Debug\\parameters.csv"))
+			using (var reader = new StreamReader("C:\\Users\\Alexander\\source\\repos\\KSP\\KSP_OrbitManeuvers\\KSP_OrbitManeuvers\\bin\\Debug\\parameters.csv"))
 			using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
 			{
 				records = csv.GetRecords<CelestialBody>().ToList();
